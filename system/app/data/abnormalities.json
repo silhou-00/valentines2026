@@ -2,6 +2,7 @@
   {
     "id": "O-01-04",
     "name": "Queen of Hatred",
+    "code": "O-01-04",
     "description": "In the name of Love and Justice, I shall punish you!",
     "riskLevel": "WAW",
     "flavourText": "The magical girl of love and justice has arrived.",
@@ -11,25 +12,63 @@
       "attachment": "Very High",
       "repression": "Low"
     },
-    "image": "/abnormality/Box.png" 
+    "image": "/abnormality/Box.png",
+    "managerialTips": [
+      "When the work result was Bad, Qliphoth Counter lowered.",
+      "If the Qliphoth Counter reaches 0, she will breach.",
+      "Requires constant attention to maintain her 'Hero' persona."
+    ],
+    "workResults": {
+        "good": "16-22",
+        "normal": "10-15",
+        "bad": "0-9"
+    },
+    "qliphothCounter": 2,
+    "damageType": "BLACK",
+    "eBoxOutput": 22,
+    "ego": {
+        "weapon": "Love & Justice",
+        "suit": "Magical Girl",
+        "gift": "Tiara"
+    }
   },
   {
     "id": "O-05-102",
     "name": "Cenobite",
+    "code": "O-05-102",
     "description": "We have such sights to show you.",
     "riskLevel": "ALEPH",
     "flavourText": "Pain and pleasure, indivisible.",
     "stats": {
-      "instinct": "Very Low",
+      "instinct": "Low",
       "insight": "Very High",
       "attachment": "Normal",
       "repression": "High"
     },
-    "image": "/abnormality/Box.png"
+    "image": "/abnormality/Box.png",
+    "managerialTips": [
+      "Work result 'Bad' will immediately cause a breach.",
+      "Employees with Prudence IV or lower will panic immediately.",
+      "Sacrifice is required for better results."
+    ],
+    "workResults": {
+        "good": "24-30",
+        "normal": "15-23",
+        "bad": "0-14"
+    },
+    "qliphothCounter": 1,
+    "damageType": "PALE",
+    "eBoxOutput": 30,
+    "ego": {
+        "weapon": "Lament",
+        "suit": "Leather",
+        "gift": "Pins"
+    }
   },
   {
     "id": "T-09-09",
     "name": "My Valentine",
+    "code": "T-09-09",
     "description": "The one and only subject of my extraction.",
     "riskLevel": "ALEPH",
     "flavourText": "Contains infinite amounts of affection and chaos.",
@@ -39,6 +78,24 @@
       "attachment": "Max",
       "repression": "Impossible"
     },
-    "image": "/abnormality/girlfriend_portrait.png"
+    "image": "/abnormality/girlfriend_portrait.png",
+    "managerialTips": [
+      "Please give infinite headpats.",
+      "Chocolate supply must be maintained at all times.",
+      "Do not ignore for more than 5 minutes."
+    ],
+    "workResults": {
+        "good": "28-35",
+        "normal": "20-27",
+        "bad": "0-19"
+    },
+    "qliphothCounter": 3,
+    "damageType": "WHITE",
+    "eBoxOutput": 35,
+    "ego": {
+        "weapon": "Bouquet",
+        "suit": "Sunday Best",
+        "gift": "Ring"
+    }
   }
 ]
