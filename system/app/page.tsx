@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import ExtractionSelection from "./components/ExtractionSelection";
 import AbnormalityDossier from "./components/AbnormalityDossier";
@@ -9,9 +9,14 @@ import abnormalities from "./data/abnormalities.json";
 export default function Home() {
   const [phase, setPhase] = useState<"loading" | "selection" | "dossier">("loading");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleLoadingComplete = () => {
     setPhase("selection");
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+      audioRef.current.play().catch(() => {});
+    }
   };
 
   const handleExtract = (id: string) => {
@@ -44,6 +49,9 @@ export default function Home() {
           <AbnormalityDossier abnormality={selectedAbnormality} onBack={handleBack} />
         )}
       </div>
+      <audio ref={audioRef} src="/audio/Netzach battle.mp3" loop preload="auto" />
     </div>
   );
 }
+
+

@@ -1,84 +1,111 @@
 [
   {
-    "id": "O-01-04",
-    "name": "Queen of Hatred",
-    "code": "O-01-04",
-    "description": "In the name of Love and Justice, I shall punish you!",
-    "riskLevel": "WAW",
-    "flavourText": "The magical girl of love and justice has arrived.",
+    "id": "F-02-55",
+    "name": "The Beast of Tiny Bites",
+    "code": "F-02-55",
+    "description": "It does not devour souls, only the last slice of pizza. Do not leave unattended near the fridge.",
+    "riskLevel": "TETH",
+    "flavourText": "Safe but mischievous.",
     "stats": {
-      "instinct": "Low",
-      "insight": "High",
+      "instinct": "High",
+      "insight": "Normal",
       "attachment": "Very High",
       "repression": "Low"
     },
-    "image": "/abnormality/Box.png",
+    "image": "/abnormality/TheBeastOfTinyBites/052f7e81-682d-4070-b240-5fc7b2a8b1c0.jpg",
+    "galleryImages": [
+      "/abnormality/TheBeastOfTinyBites/052f7e81-682d-4070-b240-5fc7b2a8b1c0.jpg",
+      "/abnormality/TheBeastOfTinyBites/139eace7-f1d0-4857-a15c-f1bb700fe409.jpg",
+      "/abnormality/TheBeastOfTinyBites/759c4f61-90a4-45f6-b6f9-3e07c776aa9b.jpg",
+      "/abnormality/TheBeastOfTinyBites/9e2c8ae7-bceb-4345-a665-9e8d87ebcbc8.jpg",
+      "/abnormality/TheBeastOfTinyBites/a0f33656-caaf-42a3-9127-8468be82c09b.jpg",
+      "/abnormality/TheBeastOfTinyBites/b1a94430-f438-4107-9a0b-ea11bebbba59.jpg"
+    ],
     "managerialTips": [
-      "When the work result was Bad, Qliphoth Counter lowered.",
-      "If the Qliphoth Counter reaches 0, she will breach.",
-      "Requires constant attention to maintain her 'Hero' persona."
+      "Do not leave food unattended in common areas.",
+      "Snack-based bribery is effective but temporary.",
+      "Despite appearances, it is mostly harmless. Mostly."
     ],
     "workResults": {
         "good": "16-22",
         "normal": "10-15",
         "bad": "0-9"
     },
-    "qliphothCounter": 2,
-    "damageType": "BLACK",
-    "eBoxOutput": 22,
+    "qliphothCounter": 4,
+    "damageType": "RED",
+    "eBoxOutput": 18,
     "ego": {
-        "weapon": "Love & Justice",
-        "suit": "Magical Girl",
-        "gift": "Tiara"
+        "weapon": "Nibble",
+        "suit": "Crumb Coat",
+        "gift": "Tiny Fang"
     }
   },
   {
-    "id": "O-05-102",
-    "name": "Cenobite",
-    "code": "O-05-102",
-    "description": "We have such sights to show you.",
-    "riskLevel": "ALEPH",
-    "flavourText": "Pain and pleasure, indivisible.",
+    "id": "P-03-88",
+    "name": "The Eternal Audience",
+    "code": "P-03-88",
+    "description": "She watches with a thousand eyes of admiration. To look away is to deny her existence.",
+    "riskLevel": "WAW",
+    "flavourText": "Intense.",
     "stats": {
       "instinct": "Low",
       "insight": "Very High",
-      "attachment": "Normal",
-      "repression": "High"
+      "attachment": "High",
+      "repression": "Normal"
     },
-    "image": "/abnormality/Box.png",
+    "image": "/abnormality/EternalAudience/fc32e20a-dac3-4462-b904-fdd5fd88dd1b.jpg",
+    "galleryImages": [
+      "/abnormality/EternalAudience/06cdaada-b147-4fa2-afd3-02caf309e90c.jpg",
+      "/abnormality/EternalAudience/174583fe-b9d2-4b10-9184-132a8e97f1e1.jpg",
+      "/abnormality/EternalAudience/32d177f4-1489-4def-af99-b414e17be66b.jpg",
+      "/abnormality/EternalAudience/d0007bc0-a6db-4c84-ad2f-18a0b2918acf.jpg",
+      "/abnormality/EternalAudience/f3c411cc-7a0d-4fb0-9d82-321beaebc19a.jpg",
+      "/abnormality/EternalAudience/fc32e20a-dac3-4462-b904-fdd5fd88dd1b.jpg"
+    ],
     "managerialTips": [
-      "Work result 'Bad' will immediately cause a breach.",
-      "Employees with Prudence IV or lower will panic immediately.",
-      "Sacrifice is required for better results."
+      "Maintain eye contact at all times during observation.",
+      "Employees with Temperance III or lower will become entranced.",
+      "Her applause echoes through containment — this is normal."
     ],
     "workResults": {
-        "good": "24-30",
-        "normal": "15-23",
-        "bad": "0-14"
+        "good": "20-28",
+        "normal": "12-19",
+        "bad": "0-11"
     },
-    "qliphothCounter": 1,
-    "damageType": "PALE",
-    "eBoxOutput": 30,
+    "qliphothCounter": 2,
+    "damageType": "WHITE",
+    "eBoxOutput": 25,
     "ego": {
-        "weapon": "Lament",
-        "suit": "Leather",
-        "gift": "Pins"
+        "weapon": "Ovation",
+        "suit": "Spotlight",
+        "gift": "Standing O"
     }
   },
   {
-    "id": "T-09-09",
-    "name": "My Valentine",
-    "code": "T-09-09",
-    "description": "The one and only subject of my extraction.",
+    "id": "D-01-14",
+    "name": "The Red String's Origin",
+    "code": "D-01-14",
+    "description": "We did not find her; we were always bound to her. The facility exists solely to contain her overwhelming radiance.",
     "riskLevel": "ALEPH",
-    "flavourText": "Contains infinite amounts of affection and chaos.",
+    "flavourText": "The origin of all connections.",
     "stats": {
       "instinct": "High",
       "insight": "High",
       "attachment": "Max",
       "repression": "Impossible"
     },
-    "image": "/abnormality/girlfriend_portrait.png",
+    "image": "/abnormality/RedStringOrigin/191c8686-4e47-4cf5-aa9a-af2e0ea75c97.jpg",
+    "galleryImages": [
+      "/abnormality/RedStringOrigin/191c8686-4e47-4cf5-aa9a-af2e0ea75c97.jpg",
+      "/abnormality/RedStringOrigin/3db43da3-b0b8-47d6-b030-0a2434403c70.jpg",
+      "/abnormality/RedStringOrigin/430a5f71-547d-461a-b482-b6ee47e714c3.jpg",
+      "/abnormality/RedStringOrigin/5344eb6e-6b41-4e65-9dbd-24f8204776b4.jpg",
+      "/abnormality/RedStringOrigin/6151a60e-74b6-49ac-8fd9-f8d3cfb8b358.jpg",
+      "/abnormality/RedStringOrigin/6a40189f-94a9-4b5e-9298-bfc12fea39b9.jpg",
+      "/abnormality/RedStringOrigin/874e7784-b6bd-426c-8580-ea172c5cd45d.jpg",
+      "/abnormality/RedStringOrigin/9b6e3b5f-6777-4021-840b-135f2e2a8c6d.jpg",
+      "/abnormality/RedStringOrigin/cfbe06c8-34f9-42e4-b489-85d213699f8b.jpg"
+    ],
     "managerialTips": [
       "Please give infinite headpats.",
       "Chocolate supply must be maintained at all times.",

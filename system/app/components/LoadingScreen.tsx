@@ -15,6 +15,7 @@ const steps = [
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     if (currentStep < steps.length) {
@@ -24,8 +25,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       return () => clearTimeout(timeout);
     } else {
       const timeout = setTimeout(() => {
-        setFadeOut(true);
-        setTimeout(onComplete, 1000);
+        setShowButton(true);
       }, 1000);
       return () => clearTimeout(timeout);
     }
@@ -77,6 +77,16 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
          <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-50 animate-flash-bang">
              <h1 className="font-norwester text-8xl text-[#4ffbfb] animate-pulse drop-shadow-[0_0_1.875rem_#4ffbfb]">DAY 14</h1>
          </div>
+      )}
+
+      {/* START BUTTON - appears below loading steps after DAY 14 flash */}
+      {showButton && (
+        <button
+          onClick={() => { setFadeOut(true); setTimeout(onComplete, 1000); }}
+          className="z-50 mt-8 font-norwester text-2xl text-black bg-[#4ffbfb] px-10 py-3 tracking-widest hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_1.25rem_#4ffbfb] animate-pulse"
+        >
+          START DAY 14
+        </button>
       )}
 
       {/* Logo Bottom Left */}

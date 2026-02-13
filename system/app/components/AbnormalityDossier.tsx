@@ -18,6 +18,7 @@ interface Abnormality {
     repression: string;
   };
   image: string;
+  galleryImages?: string[];
   managerialTips?: string[];
   workResults?: {
     good: string;
@@ -334,13 +335,12 @@ export default function AbnormalityDossier({
                   <button onClick={() => setShowGallery(false)} className="text-zinc-500 hover:text-red-500 font-norwester text-[2rem] border border-zinc-600 hover:border-red-500 px-[1.5rem] py-[0.5rem] transition-all">CLOSE [X]</button>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[2rem] overflow-y-auto pb-[2rem] custom-scrollbar">
-                  {/* Placeholder Gallery Items */}
-                  {[1,2,3,4,5,6,7,8].map((i) => (
-                      <div key={i} className="aspect-square bg-zinc-900 border-2 border-zinc-800 relative group overflow-hidden cursor-pointer hover:border-red-600 transition-colors">
-                          <Image src={abnormality.image} alt="Gallery" fill className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-110" />
-                          <div className="absolute bottom-0 inset-x-0 bg-black/80 p-[0.75rem] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 border-t border-red-900">
-                              <span className="text-[0.875rem] font-mono text-red-400 block">OBSERVATION #{i}</span>
+              <div className="columns-2 md:columns-3 gap-4 overflow-y-auto pb-8 custom-scrollbar">
+                  {(abnormality.galleryImages || [abnormality.image]).map((img: string, i: number) => (
+                      <div key={i} className="relative bg-zinc-900 border-2 border-zinc-800 group overflow-hidden cursor-pointer hover:border-red-600 transition-colors mb-4 break-inside-avoid">
+                          <img src={img} alt={`Observation ${i + 1}`} className="w-full h-auto opacity-60 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-105" />
+                          <div className="absolute bottom-0 inset-x-0 bg-black/80 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 border-t border-red-900">
+                              <span className="text-[0.875rem] font-mono text-red-400 block">OBSERVATION #{i + 1}</span>
                               <span className="text-[0.75rem] font-mono text-zinc-500">Day 14 // 14:00</span>
                           </div>
                       </div>
