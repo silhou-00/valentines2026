@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import abnormalities from "../data/abnormalities.json";
+import EmployeeCharacter from "./EmployeeCharacter";
 
 const DRAG_THRESHOLD = 150; // pixels down to trigger extract
 
@@ -71,6 +72,9 @@ export default function ExtractionSelection({
       
       {/* Overlay grid/texture */}
       <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:1.25rem_1.25rem]" />
+
+      {/* Playable Employee Character */}
+      <EmployeeCharacter />
 
       {/* Top Re-Extraction Sign */}
       <button 

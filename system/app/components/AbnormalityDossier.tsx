@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Sword, Shirt, Gift } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, Minimize2, Sword, Shirt, Gift } from "lucide-react";
+import EmployeeCharacter from "./EmployeeCharacter";
 
 interface Abnormality {
   id: string;
@@ -69,6 +70,12 @@ export default function AbnormalityDossier({
   return (
     <div className={`fixed inset-0 z-50 w-screen h-screen bg-black border-4 border-red-900/50 flex flex-col overflow-hidden transition-opacity duration-1000 ${showContent ? "opacity-100" : "opacity-0"}`}>
       
+      {/* Playable Employee Character - Persistent Layer */}
+      <EmployeeCharacter 
+        idleSprite="/employee_sprite/StartWork.gif"
+        walkingSprite="/employee_sprite/WorkProcess.gif"
+      />
+
       {/* Background Grid */}
       <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(50,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(50,0,0,0.1)_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] opacity-50" />
 
@@ -124,7 +131,7 @@ export default function AbnormalityDossier({
               
               <div className="relative border-2 border-zinc-600 bg-black p-[1rem] shadow-2xl flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar">
                   {/* Portrait */}
-                  <div className="relative w-full aspect-square border-4 border-[#2a2a2a] bg-[#1a1a1a] mb-[0.75rem] overflow-hidden group shrink-0">
+                  <div id="abnormality-exposure-zone" className="relative w-full aspect-square border-4 border-[#2a2a2a] bg-[#1a1a1a] mb-[0.75rem] overflow-hidden group shrink-0">
                       <Image 
                         src={abnormality.image} 
                         alt={abnormality.name} 
