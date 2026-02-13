@@ -61,7 +61,7 @@
 
 The background image is in the background folder
 The box image is in the abnormality folder
-The font family is in the font folder
+The norwester font family is in the font folder
       animation: {
         'shake-violent': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite',
         'door-slide-left': 'slideLeft 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards',
