@@ -11,6 +11,7 @@ export default function ExtractionSelection({
 }) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isExtracting, setIsExtracting] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleExtract = (id: string) => {
     if (isExtracting) return;
@@ -29,10 +30,22 @@ export default function ExtractionSelection({
       <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:1.25rem_1.25rem]" />
 
       {/* Top Re-Extraction Sign */}
-      <div className="absolute top-10 flex items-center justify-center border-4 border-yellow-100 bg-black px-8 py-2 shadow-lg z-50">
-          <span className="font-norwester text-2xl text-yellow-100 tracking-widest">FIXED EXTRACTION</span>
+      <button 
+        onClick={() => { setShowError(true); setTimeout(() => setShowError(false), 3000); }}
+        className="absolute top-10 flex items-center justify-center border-4 border-yellow-100 bg-black px-8 py-2 shadow-lg z-50 cursor-pointer hover:bg-zinc-900 hover:border-yellow-300 transition-all active:scale-95"
+      >
+          <span className="font-norwester text-2xl text-yellow-100 tracking-widest">EXTRACT ABNORMALITY</span>
           <div className="absolute inset-x-0 -bottom-2 h-2 bg-[repeating-linear-gradient(45deg,black,black_0.625rem,#fbbf24_0.625rem,#fbbf24_1.25rem)] border-t border-black" />
-      </div>
+      </button>
+
+      {/* Error Message */}
+      {showError && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/80">
+          <div className="bg-red-900/90 border-4 border-red-500 px-16 py-8 shadow-[0_0_3.125rem_rgba(220,38,38,0.6)] animate-pulse">
+            <span className="font-norwester text-5xl md:text-7xl text-red-300 tracking-widest">ERROR - Commitment Enabled</span>
+          </div>
+        </div>
+      )}
 
       {abnormalities.map((item) => (
         <div
@@ -139,10 +152,7 @@ export default function ExtractionSelection({
         </div>
       ))}
 
-      {/* Flash Bang Overlay */}
-      {isExtracting && (
-        <div className="pointer-events-none fixed inset-0 z-100 animate-flash-bang bg-white opacity-0" />
-      )}
+
     </div>
   );
 }
