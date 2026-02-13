@@ -32,15 +32,14 @@ export default function Home() {
   const selectedAbnormality = abnormalities.find((a) => a.id === selectedId);
 
   return (
-    <div className={`flex min-h-screen w-full items-center justify-center font-sans overflow-hidden transition-all duration-1000 ${
-        phase === "loading" ? "bg-black" :
-        phase === "selection" ? "bg-[url('/background/LobCorp.png')] bg-cover bg-center" :
-        "bg-[url('/background/Lobotomy_Background.png')] bg-cover bg-center"
+    <div className={`flex min-h-screen w-full justify-center font-sans overflow-auto overflow-x-hidden transition-all duration-1000 ${
+        phase === "loading" ? "bg-black items-center" :
+        "bg-[url('/background/LobCorp.png')] bg-cover bg-center items-center"
     }`}>
       
       {phase === "loading" && <LoadingScreen onComplete={handleLoadingComplete} />}
 
-      <div className={`transition-opacity duration-1000 w-full h-[60rem] flex items-center justify-center ${phase === "loading" ? "opacity-0" : "opacity-100"}`}>
+      <div className={`transition-opacity duration-1000 w-full h-[60rem] min-h-screen flex items-center justify-center ${phase === "loading" ? "opacity-0" : "opacity-100"}`}>
         {phase === "selection" && (
           <ExtractionSelection onExtract={handleExtract} />
         )}

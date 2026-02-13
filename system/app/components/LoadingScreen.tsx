@@ -37,7 +37,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      <div className="relative h-[25rem] w-full flex flex-col items-center justify-center">
+      <div className="relative h-100 w-full flex flex-col items-center justify-center">
         {steps.map((step, index) => {
           // Calculate offset relative to current step
           const offset = index - currentStep;
@@ -65,7 +65,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
               </p>
                {/* Horizontal lines for active step */}
               {index === currentStep && (
-                  <div className="w-[31.25rem] h-px bg-[#4ffbfb] mt-4 animate-pulse transition-all duration-500 shadow-[0_0_0.625rem_#4ffbfb]" />
+                  <div className="w-125 h-px bg-[#4ffbfb] mt-4 animate-pulse transition-all duration-500 shadow-[0_0_0.625rem_#4ffbfb]" />
               )}
             </div>
           );
@@ -104,7 +104,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_0.25rem,0.1875rem_100%] bg-repeat" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-size-[100%_0.25rem,0.1875rem_100%] bg-repeat" />
     </div>
   );
 }

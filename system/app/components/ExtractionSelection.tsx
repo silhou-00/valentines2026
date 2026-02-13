@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
-import Image from "next/image";
+import { useState, useRef, useCallback, useEffect } from "react";
 import abnormalities from "../data/abnormalities.json";
 import EmployeeCharacter from "./EmployeeCharacter";
 
@@ -21,6 +20,19 @@ export default function ExtractionSelection({
 
   const startYRef = useRef(0);
   const isDraggingRef = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileIndex, setMobileIndex] = useState(0);
+
+  const handleNext = () => setMobileIndex(prev => Math.min(prev + 1, abnormalities.length - 1));
+  const handlePrev = () => setMobileIndex(prev => Math.max(prev - 1, 0));
+
+  // Check for mobile/tablet screen size
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleExtract = useCallback((id: string) => {
     if (isExtracting) return;
@@ -35,13 +47,20 @@ export default function ExtractionSelection({
 
   const handlePointerDown = useCallback((e: React.PointerEvent, id: string) => {
     if (isExtracting) return;
+    
+    // On mobile/tablet, simple tap triggers extraction
+    if (isMobile) {
+        handleExtract(id);
+        return;
+    }
+
     e.preventDefault();
     (e.target as HTMLElement).setPointerCapture(e.pointerId);
     startYRef.current = e.clientY;
     isDraggingRef.current = true;
     setHoldingId(id);
     setDragY(0);
-  }, [isExtracting]);
+  }, [isExtracting, isMobile, handleExtract]);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!isDraggingRef.current || !holdingId || isExtracting) return;
@@ -68,13 +87,15 @@ export default function ExtractionSelection({
   const dragProgress = Math.min(dragY / DRAG_THRESHOLD, 1);
 
   return (
-    <div className="relative flex h-full w-full items-center justify-center gap-8 md:gap-32 bg-[url('/background/LobCorp.png')] bg-cover bg-center">
+    <div className={`relative flex min-h-full w-full items-center justify-center lg:gap-32 py-20 lg:py-0 bg-[url('/background/LobCorp.png')] bg-cover bg-center ${isMobile ? 'flex-col' : 'flex-row'}`}>
       
       {/* Overlay grid/texture */}
-      <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:1.25rem_1.25rem]" />
+      <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-size-[1.25rem_1.25rem]" />
 
-      {/* Playable Employee Character */}
-      <EmployeeCharacter />
+      {/* Playable Employee Character - Hidden on mobile/tablet */}
+      <div className="hidden lg:block absolute">
+        <EmployeeCharacter />
+      </div>
 
       {/* Top Re-Extraction Sign */}
       <button 
@@ -87,9 +108,11 @@ export default function ExtractionSelection({
 
       {/* Drag instruction hint */}
       {!isExtracting && !holdingId && (
-        <div className="absolute bottom-16 z-50 flex flex-col items-center animate-pulse">
-          <span className="font-norwester text-lg text-zinc-500 tracking-widest">HOLD & DRAG DOWN TO EXTRACT</span>
-          <svg className="w-6 h-6 text-zinc-500 mt-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+        <div className="absolute bottom-16 z-50 flex flex-col items-center animate-pulse pointer-events-none">
+          <span className="font-norwester text-lg text-zinc-500 tracking-widest text-center">
+              {isMobile ? "TAP BOX TO EXTRACT" : "HOLD & DRAG DOWN TO EXTRACT"}
+          </span>
+          <svg className={`w-6 h-6 text-zinc-500 mt-2 animate-bounce ${isMobile ? "hidden" : "block"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
         </div>
       )}
 
@@ -102,7 +125,41 @@ export default function ExtractionSelection({
         </div>
       )}
 
-      {abnormalities.map((item) => (
+      {/* Mobile Navigation Buttons */}
+      {isMobile && (
+        <>
+          <button 
+             onClick={handlePrev}
+             disabled={mobileIndex === 0}
+             className={`absolute left-4 top-1/2 -translate-y-1/2 z-50 p-4 border-2 border-yellow-500 bg-black text-yellow-500 rounded-full transition-all active:scale-95 ${mobileIndex === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-yellow-500 hover:text-black shadow-[0_0_1.25rem_rgba(234,179,8,0.5)]"}`}
+          >
+             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          
+          <button 
+             onClick={handleNext}
+             disabled={mobileIndex === abnormalities.length - 1}
+             className={`absolute right-4 top-1/2 -translate-y-1/2 z-50 p-4 border-2 border-yellow-500 bg-black text-yellow-500 rounded-full transition-all active:scale-95 ${mobileIndex === abnormalities.length - 1 ? "opacity-30 cursor-not-allowed" : "hover:bg-yellow-500 hover:text-black shadow-[0_0_1.25rem_rgba(234,179,8,0.5)]"}`}
+          >
+             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-50">
+              {abnormalities.map((_, i) => (
+                  <div key={i} className={`w-3 h-3 rounded-full border border-black ${i === mobileIndex ? "bg-yellow-500 shadow-[0_0_0.5rem_rgba(234,179,8,0.8)]" : "bg-zinc-800"}`} />
+              ))}
+          </div>
+        </>
+      )}
+
+      {abnormalities.map((item, index) => {
+        // Condition to show item:
+        // On Desktop (!isMobile): Show all
+        // On Mobile (isMobile): Show only if index matches mobileIndex
+        if (isMobile && index !== mobileIndex) return null;
+        
+        return (
         <div
           key={item.id}
           className={`relative group cursor-grab active:cursor-grabbing transition-all select-none scale-90 md:scale-100 ${
@@ -123,7 +180,7 @@ export default function ExtractionSelection({
           style={{
             transform: holdingId === item.id || (extracted && selectedId === item.id)
               ? `translateY(${extracted ? '150vh' : `${dragY}px`}) ${holdingId === item.id ? `rotate(${dragProgress * 3}deg)` : ''}`
-              : undefined,
+              : isMobile ? 'none' : undefined, // Reset standard transforms on mobile carousel to avoid conflicts
             transition: extracted && selectedId === item.id
               ? 'transform 1s ease-in'
               : holdingId === item.id
@@ -142,16 +199,16 @@ export default function ExtractionSelection({
           />
           
           {/* Main Container for the Unit */}
-          <div className="relative w-80 flex flex-col items-center select-none">
+          <div className="relative w-64 lg:w-80 flex flex-col items-center select-none">
             
              {/* Backing Plate / Outline Material */}
              <div className="absolute -inset-4 bg-[#111] rounded-xl -z-10 border-4 border-black group-hover:bg-[#fbf6d9] transition-colors duration-300" style={{ clipPath: "polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%)" }} />
 
 
              {/* --- TOP MECHANISM CLUSTER --- */}
-             <div className="relative w-full h-24 -mt-16 mb-[-1.25rem] z-10 flex justify-center items-end">
+             <div className="relative w-full h-24 -mt-16 -mb-5 z-10 flex justify-center items-end">
                  {/* Big Gear Left */}
-                 <div className="absolute left-[-0.625rem] bottom-4 w-20 h-20 rounded-full bg-[#1a1a1a] border-4 border-black flex items-center justify-center">
+                 <div className="absolute -left-2.5 bottom-4 w-20 h-20 rounded-full bg-[#1a1a1a] border-4 border-black flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full border-4 border-[#333] bg-[#0a0a0a]" />
                     <div className="absolute -top-4 w-4 h-12 bg-black rotate-45" />
                  </div>
@@ -172,7 +229,7 @@ export default function ExtractionSelection({
 
 
              {/* --- MAIN BLACK BOX --- */}
-             <div className="relative z-10 w-full h-72 border-[0.375rem] border-black bg-black p-2 mt-[-0.625rem] shadow-xl">
+             <div className="relative z-10 w-full h-56 lg:h-72 border-[0.375rem] border-black bg-black p-2 -mt-2.5 shadow-xl">
                  {/* Inner Frame */}
                  <div className="relative h-full w-full overflow-hidden border-2 border-zinc-600 bg-[#0a0a0a]">
                      
@@ -231,7 +288,8 @@ export default function ExtractionSelection({
               : "bg-[#fbbf24]/0 group-hover:bg-[#fbbf24]/20"
           }`} />
         </div>
-      ))}
+      );
+    })}
 
 
     </div>
