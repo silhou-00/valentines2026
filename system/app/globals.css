@@ -10,6 +10,53 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-norwester: var(--font-norwester);
+
+  --animate-shake-violent: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+  --animate-door-slide-left: slideLeft 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  --animate-door-slide-right: slideRight 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  --animate-flash-bang: flashBang 2.5s ease-out forwards;
+  --animate-stamp-slam: stamp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  --animate-text-type: typing 3s steps(40, end);
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-shake-subtle: shakeSubtle 3s ease-in-out infinite;
+
+  @keyframes shake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10%, 90% { transform: translate(-2px, -2px) rotate(-1deg); }
+    20%, 80% { transform: translate(2px, 2px) rotate(1deg); }
+    30%, 50%, 70% { transform: translate(-4px, 2px) rotate(-2deg); }
+    40%, 60% { transform: translate(4px, -2px) rotate(2deg); }
+  }
+  @keyframes stamp {
+    0% { opacity: 0; transform: scale(5) rotate(-15deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-5deg); }
+  }
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes slideLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes slideRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+  @keyframes flashBang {
+    0% { background-color: white; opacity: 1; }
+    100% { background-color: transparent; opacity: 0; }
+  }
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes shakeSubtle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(0.5deg); }
+    75% { transform: rotate(-0.5deg); }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

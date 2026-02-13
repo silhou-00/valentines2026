@@ -1,0 +1,44 @@
+[
+  {
+    "id": "O-01-04",
+    "name": "Queen of Hatred",
+    "description": "In the name of Love and Justice, I shall punish you!",
+    "riskLevel": "WAW",
+    "flavourText": "The magical girl of love and justice has arrived.",
+    "stats": {
+      "instinct": "Low",
+      "insight": "High",
+      "attachment": "Very High",
+      "repression": "Low"
+    },
+    "image": "/abnormality/Box.png" 
+  },
+  {
+    "id": "O-05-102",
+    "name": "Cenobite",
+    "description": "We have such sights to show you.",
+    "riskLevel": "ALEPH",
+    "flavourText": "Pain and pleasure, indivisible.",
+    "stats": {
+      "instinct": "Very Low",
+      "insight": "Very High",
+      "attachment": "Normal",
+      "repression": "High"
+    },
+    "image": "/abnormality/Box.png"
+  },
+  {
+    "id": "T-09-09",
+    "name": "My Valentine",
+    "description": "The one and only subject of my extraction.",
+    "riskLevel": "ALEPH",
+    "flavourText": "Contains infinite amounts of affection and chaos.",
+    "stats": {
+      "instinct": "High",
+      "insight": "High",
+      "attachment": "Max",
+      "repression": "Impossible"
+    },
+    "image": "/abnormality/girlfriend_portrait.png"
+  }
+]
