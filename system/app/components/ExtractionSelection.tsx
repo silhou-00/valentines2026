@@ -26,12 +26,12 @@ export default function ExtractionSelection({
     <div className="relative flex h-full w-full items-center justify-center gap-8 md:gap-32 bg-[url('/background/LobCorp.png')] bg-cover bg-center">
       
       {/* Overlay grid/texture */}
-      <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:20px_20px]" />
+      <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:1.25rem_1.25rem]" />
 
       {/* Top Re-Extraction Sign */}
       <div className="absolute top-10 flex items-center justify-center border-4 border-yellow-100 bg-black px-8 py-2 shadow-lg z-50">
           <span className="font-norwester text-2xl text-yellow-100 tracking-widest">FIXED EXTRACTION</span>
-          <div className="absolute inset-x-0 -bottom-2 h-2 bg-[repeating-linear-gradient(45deg,black,black_10px,#fbbf24_10px,#fbbf24_20px)] border-t border-black" />
+          <div className="absolute inset-x-0 -bottom-2 h-2 bg-[repeating-linear-gradient(45deg,black,black_0.625rem,#fbbf24_0.625rem,#fbbf24_1.25rem)] border-t border-black" />
       </div>
 
       {abnormalities.map((item) => (
@@ -64,9 +64,9 @@ export default function ExtractionSelection({
 
 
              {/* --- TOP MECHANISM CLUSTER --- */}
-             <div className="relative w-full h-24 -mt-16 mb-[-20px] z-10 flex justify-center items-end">
+             <div className="relative w-full h-24 -mt-16 mb-[-1.25rem] z-10 flex justify-center items-end">
                  {/* Big Gear Left */}
-                 <div className="absolute left-[-10px] bottom-4 w-20 h-20 rounded-full bg-[#1a1a1a] border-4 border-black flex items-center justify-center">
+                 <div className="absolute left-[-0.625rem] bottom-4 w-20 h-20 rounded-full bg-[#1a1a1a] border-4 border-black flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full border-4 border-[#333] bg-[#0a0a0a]" />
                     <div className="absolute -top-4 w-4 h-12 bg-black rotate-45" /> {/* Pipe */}
                  </div>
@@ -88,14 +88,14 @@ export default function ExtractionSelection({
 
 
              {/* --- MAIN BLACK BOX --- */}
-             <div className="relative z-10 w-full h-72 border-[6px] border-black bg-black p-2 mt-[-10px] shadow-xl">
+             <div className="relative z-10 w-full h-72 border-[0.375rem] border-black bg-black p-2 mt-[-0.625rem] shadow-xl">
                  {/* Inner Frame */}
                  <div className="relative h-full w-full overflow-hidden border-2 border-zinc-600 bg-[#0a0a0a]">
                      
                      {/* Screen Content */}
                      <div className="absolute inset-0 flex items-center justify-center">
                          {/* Red Eye (Dim by default, bright on hover) */}
-                         <div className={`w-16 h-16 rounded-full bg-[#300] border-4 border-[#200] shadow-none z-20 transition-all duration-300 ${isExtracting && selectedId === item.id ? "animate-pulse scale-125 bg-[#ff0000] border-[#500] shadow-[0_0_20px_#f00]" : "group-hover:scale-110 group-hover:bg-[#ff0000] group-hover:border-[#500] group-hover:shadow-[0_0_50px_#f00]"}`}>
+                         <div className={`w-16 h-16 rounded-full bg-[#300] border-4 border-[#200] shadow-none z-20 transition-all duration-300 ${isExtracting && selectedId === item.id ? "animate-pulse scale-125 bg-[#ff0000] border-[#500] shadow-[0_0_1.25rem_#f00]" : "group-hover:scale-110 group-hover:bg-[#ff0000] group-hover:border-[#500] group-hover:shadow-[0_0_3.125rem_#f00]"}`}>
                             <div className="absolute top-3 left-3 w-4 h-4 bg-white rounded-full opacity-50" />
                          </div>
                          
