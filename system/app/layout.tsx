@@ -19,7 +19,7 @@ const norwester = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Valentine's Extraction",
+  title: "Lobotomy Valentine",
   description: "A Lobotomy Corporation style Valentine's experience",
 };
 
