@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import abnormalities from "../data/abnormalities.json";
+
+const DRAG_THRESHOLD = 150; // pixels down to trigger extract
 
 export default function ExtractionSelection({
   onExtract,
@@ -12,16 +14,57 @@ export default function ExtractionSelection({
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isExtracting, setIsExtracting] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [holdingId, setHoldingId] = useState<string | null>(null);
+  const [dragY, setDragY] = useState(0);
+  const [extracted, setExtracted] = useState(false);
 
-  const handleExtract = (id: string) => {
+  const startYRef = useRef(0);
+  const isDraggingRef = useRef(false);
+
+  const handleExtract = useCallback((id: string) => {
     if (isExtracting) return;
     setSelectedId(id);
     setIsExtracting(true);
+    setExtracted(true);
 
     setTimeout(() => {
       onExtract(id);
-    }, 2500); 
-  };
+    }, 500);
+  }, [isExtracting, onExtract]);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent, id: string) => {
+    if (isExtracting) return;
+    e.preventDefault();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    startYRef.current = e.clientY;
+    isDraggingRef.current = true;
+    setHoldingId(id);
+    setDragY(0);
+  }, [isExtracting]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDraggingRef.current || !holdingId || isExtracting) return;
+    const deltaY = e.clientY - startYRef.current;
+    // Only allow dragging downward
+    setDragY(Math.max(0, deltaY));
+
+    if (deltaY > DRAG_THRESHOLD) {
+      isDraggingRef.current = false;
+      handleExtract(holdingId);
+    }
+  }, [holdingId, isExtracting, handleExtract]);
+
+  const handlePointerUp = useCallback(() => {
+    if (!isDraggingRef.current && !extracted) {
+      // Released before threshold — snap back
+      setHoldingId(null);
+      setDragY(0);
+    }
+    isDraggingRef.current = false;
+  }, [extracted]);
+
+  // Calculate drag progress (0 to 1)
+  const dragProgress = Math.min(dragY / DRAG_THRESHOLD, 1);
 
   return (
     <div className="relative flex h-full w-full items-center justify-center gap-8 md:gap-32 bg-[url('/background/LobCorp.png')] bg-cover bg-center">
@@ -38,6 +81,14 @@ export default function ExtractionSelection({
           <div className="absolute inset-x-0 -bottom-2 h-2 bg-[repeating-linear-gradient(45deg,black,black_0.625rem,#fbbf24_0.625rem,#fbbf24_1.25rem)] border-t border-black" />
       </button>
 
+      {/* Drag instruction hint */}
+      {!isExtracting && !holdingId && (
+        <div className="absolute bottom-16 z-50 flex flex-col items-center animate-pulse">
+          <span className="font-norwester text-lg text-zinc-500 tracking-widest">HOLD & DRAG DOWN TO EXTRACT</span>
+          <svg className="w-6 h-6 text-zinc-500 mt-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+        </div>
+      )}
+
       {/* Error Message */}
       {showError && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/80">
@@ -50,16 +101,34 @@ export default function ExtractionSelection({
       {abnormalities.map((item) => (
         <div
           key={item.id}
-          className={`relative group cursor-pointer transition-all duration-500 scale-90 md:scale-100 ${
+          className={`relative group cursor-grab active:cursor-grabbing transition-all select-none scale-90 md:scale-100 ${
             isExtracting && selectedId !== item.id
-              ? "opacity-0 -translate-y-20 pointer-events-none"
-              : ""
+              ? "opacity-0 -translate-y-20 pointer-events-none duration-500"
+              : "duration-300"
           } ${
             isExtracting && selectedId === item.id
+              ? "z-50 pointer-events-none"
+              : ""
+          } ${
+            holdingId === item.id && dragY === 0
               ? "animate-shake-violent z-50"
-              : "hover:scale-105 animate-shake-subtle hover:animate-none"
+              : holdingId === item.id && dragY > 0
+                ? "z-50"
+                : !isExtracting ? "hover:scale-105 animate-shake-subtle hover:animate-none" : ""
           }`}
-          onClick={() => handleExtract(item.id)}
+          style={{
+            transform: holdingId === item.id || (extracted && selectedId === item.id)
+              ? `translateY(${extracted ? '150vh' : `${dragY}px`}) ${holdingId === item.id ? `rotate(${dragProgress * 3}deg)` : ''}`
+              : undefined,
+            transition: extracted && selectedId === item.id
+              ? 'transform 1s ease-in'
+              : holdingId === item.id
+                ? 'none'
+                : undefined,
+          }}
+          onPointerDown={(e) => handlePointerDown(e, item.id)}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
         >
           {/* Cable */}
           <div
@@ -72,7 +141,6 @@ export default function ExtractionSelection({
           <div className="relative w-80 flex flex-col items-center select-none">
             
              {/* Backing Plate / Outline Material */}
-             {/* Default: Black/Dark. Hover: Beige */}
              <div className="absolute -inset-4 bg-[#111] rounded-xl -z-10 border-4 border-black group-hover:bg-[#fbf6d9] transition-colors duration-300" style={{ clipPath: "polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%)" }} />
 
 
@@ -81,7 +149,7 @@ export default function ExtractionSelection({
                  {/* Big Gear Left */}
                  <div className="absolute left-[-0.625rem] bottom-4 w-20 h-20 rounded-full bg-[#1a1a1a] border-4 border-black flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full border-4 border-[#333] bg-[#0a0a0a]" />
-                    <div className="absolute -top-4 w-4 h-12 bg-black rotate-45" /> {/* Pipe */}
+                    <div className="absolute -top-4 w-4 h-12 bg-black rotate-45" />
                  </div>
                  {/* Medium Gear Right */}
                  <div className="absolute right-0 bottom-8 w-16 h-16 rounded-full bg-[#1a1a1a] border-4 border-black flex items-center justify-center">
@@ -94,7 +162,6 @@ export default function ExtractionSelection({
 
 
              {/* --- NAME LABEL --- */}
-             {/* Default: Black bg, White/Gray text. Hover: Beige bg, Black text */}
              <div className="relative z-20 w-[110%] rotate-[-2deg] border-4 border-black bg-black px-2 py-3 text-center shadow-lg skew-x-[-5deg] group-hover:bg-[#fefce0] transition-colors duration-300">
                  <span className="font-norwester text-3xl text-zinc-500 block tracking-normal leading-none stroke-black stroke-2 group-hover:text-black transition-colors duration-300">{item.name}</span>
              </div>
@@ -107,12 +174,18 @@ export default function ExtractionSelection({
                      
                      {/* Screen Content */}
                      <div className="absolute inset-0 flex items-center justify-center">
-                         {/* Red Eye (Dim by default, bright on hover) */}
-                         <div className={`w-16 h-16 rounded-full bg-[#300] border-4 border-[#200] shadow-none z-20 transition-all duration-300 ${isExtracting && selectedId === item.id ? "animate-pulse scale-125 bg-[#ff0000] border-[#500] shadow-[0_0_1.25rem_#f00]" : "group-hover:scale-110 group-hover:bg-[#ff0000] group-hover:border-[#500] group-hover:shadow-[0_0_3.125rem_#f00]"}`}>
+                         {/* Red Eye */}
+                         <div className={`w-16 h-16 rounded-full bg-[#300] border-4 border-[#200] shadow-none z-20 transition-all duration-300 ${
+                           holdingId === item.id
+                             ? "animate-pulse scale-125 bg-[#ff0000] border-[#500] shadow-[0_0_3.125rem_#f00]"
+                             : isExtracting && selectedId === item.id 
+                               ? "animate-pulse scale-125 bg-[#ff0000] border-[#500] shadow-[0_0_1.25rem_#f00]" 
+                               : "group-hover:scale-110 group-hover:bg-[#ff0000] group-hover:border-[#500] group-hover:shadow-[0_0_3.125rem_#f00]"
+                         }`}>
                             <div className="absolute top-3 left-3 w-4 h-4 bg-white rounded-full opacity-50" />
                          </div>
                          
-                         {/* EKG Line / Noise - Only visible on hover? Or dim? Let's keep dim */}
+                         {/* EKG Line / Noise */}
                          <div className="absolute bottom-10 inset-x-0 h-1 bg-red-900 opacity-20 group-hover:opacity-50 transition-opacity" />
                          <div className="absolute bottom-10 inset-x-0 h-16 bg-gradient-to-t from-red-900/10 to-transparent group-hover:from-red-900/20 transition-all" />
                      </div>
@@ -148,7 +221,11 @@ export default function ExtractionSelection({
           </div>
 
           {/* Hover Glow */}
-          <div className="absolute inset-0 -z-20 scale-110 bg-[#fbbf24]/0 rounded-full blur-3xl transition-all duration-300 group-hover:bg-[#fbbf24]/20" />
+          <div className={`absolute inset-0 -z-20 scale-110 rounded-full blur-3xl transition-all duration-300 ${
+            holdingId === item.id 
+              ? "bg-red-500/30" 
+              : "bg-[#fbbf24]/0 group-hover:bg-[#fbbf24]/20"
+          }`} />
         </div>
       ))}
 
@@ -156,3 +233,4 @@ export default function ExtractionSelection({
     </div>
   );
 }
+

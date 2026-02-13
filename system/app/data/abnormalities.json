@@ -24,7 +24,9 @@
     "managerialTips": [
       "Do not leave food unattended in common areas.",
       "Snack-based bribery is effective but temporary.",
-      "Despite appearances, it is mostly harmless. Mostly."
+      "Despite appearances, it is mostly harmless. Mostly.",
+      "The Qliphoth Counter lowers if the entity has not been fed a 'Snack' within the last 5 minutes.",
+      "When its mood is low, it may attempt to nibble on the employee's ankles, causing minor RED damage."
     ],
     "workResults": {
         "good": "16-22",
@@ -65,7 +67,9 @@
     "managerialTips": [
       "Maintain eye contact at all times during observation.",
       "Employees with Temperance III or lower will become entranced.",
-      "Her applause echoes through containment — this is normal."
+      "Performing 'Repression' work will instantly set the Qliphoth Counter to 0.",
+      "Her applause echoes through containment — this is normal.",
+      "If the entity breaches, it will follow the employee with the highest stats, filming them incessantly."
     ],
     "workResults": {
         "good": "20-28",
@@ -76,9 +80,9 @@
     "damageType": "WHITE",
     "eBoxOutput": 25,
     "ego": {
-        "weapon": "Ovation",
-        "suit": "Spotlight",
-        "gift": "Standing O"
+        "weapon": "Lightstick",
+        "suit": "Hatsune Miku",
+        "gift": "Miku Plush"
     }
   },
   {
@@ -108,8 +112,10 @@
     ],
     "managerialTips": [
       "Please give infinite headpats.",
-      "Chocolate supply must be maintained at all times.",
-      "Do not ignore for more than 5 minutes."
+      "The Qliphoth Counter decreases by 1 each time the entity is left alone for more than 10 minutes.",
+      "Attachment work yields the highest PE-Box output. Repression work is strictly forbidden.",
+      "When breaching, the entity binds all nearby employees with red threads, immobilizing them with affection.",
+      "Employees who complete 3 or more successful works report an overwhelming urge to protect this entity."
     ],
     "workResults": {
         "good": "28-35",

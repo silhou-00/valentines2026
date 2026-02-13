@@ -14,7 +14,7 @@ export default function Home() {
   const handleLoadingComplete = () => {
     setPhase("selection");
     if (audioRef.current) {
-      audioRef.current.volume = 0.5;
+      audioRef.current.volume = 0.2;
       audioRef.current.play().catch(() => {});
     }
   };
