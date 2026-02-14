@@ -39,7 +39,7 @@ export default function Home() {
       
       {phase === "loading" && <LoadingScreen onComplete={handleLoadingComplete} />}
 
-      <div className={`transition-opacity duration-1000 w-full min-h-screen flex items-center justify-center ${phase === "loading" ? "opacity-0" : "opacity-100"}`}>
+      <div className={`transition-opacity duration-1000 w-full h-240 min-h-screen flex items-center justify-center ${phase === "loading" ? "opacity-0" : "opacity-100"}`}>
         {phase === "selection" && (
           <ExtractionSelection onExtract={handleExtract} />
         )}
