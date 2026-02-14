@@ -68,7 +68,7 @@ export default function AbnormalityDossier({
   }
 
   return (
-    <div className={`fixed inset-0 z-50 w-screen h-screen bg-black border-4 border-red-900/50 flex flex-col overflow-hidden transition-opacity duration-1000 ${showContent ? "opacity-100" : "opacity-0"}`}>
+    <div className={`fixed inset-0 z-50 w-full h-full bg-black border-4 border-red-900/50 flex flex-col overflow-hidden transition-opacity duration-1000 ${showContent ? "opacity-100" : "opacity-0"}`}>
       
       {/* Playable Employee Character - Hidden on mobile/tablet */}
       <div className="hidden lg:block">
@@ -258,7 +258,7 @@ export default function AbnormalityDossier({
 
 
           {/* COLUMN 4: RIGHT SIDEBAR */}
-          <div className="flex flex-col w-full lg:w-48 xl:w-[16rem] 2xl:w-[18rem] shrink-0 gap-3 h-auto lg:h-full lg:min-h-0">
+          <div className="flex flex-col w-full lg:w-48 xl:w-[16rem] 2xl:w-[18rem] pb-5 shrink-0 gap-2 h-auto lg:h-full lg:min-h-0 overflow-visible">
                {/* Qliphoth Counter */}
                <div className="border-4 border-[#b08d55] bg-black p-[0.75rem] flex flex-col items-center relative shadow-[0_0_1.25rem_rgba(176,141,85,0.2)] shrink-0">
                    <div className="absolute top-[-0.75rem] bg-black px-[0.5rem] border-x border-[#b08d55]">
@@ -279,7 +279,7 @@ export default function AbnormalityDossier({
                </div>
 
                {/* E.G.O Information */}
-               <div className="flex flex-col gap-1.5 shrink-0 h-auto lg:h-128">
+               <div className="flex flex-col gap-1.5 flex-1 min-h-0">
                    <h3 className="text-right font-norwester text-[1rem] text-white border-b-2 border-white pb-0.5 shrink-0">E.G.O GIFT</h3>
                    <div className="h-10 border border-zinc-700 bg-zinc-900 flex items-center justify-center relative overflow-hidden group shrink-0">
                        <Gift className="w-5 h-5 text-zinc-600 absolute left-2 opacity-50" />
@@ -310,7 +310,7 @@ export default function AbnormalityDossier({
                </div>
                
                {/* Unique PE-Boxes & Leave */}
-               <div className="mt-4 flex justify-between items-center shrink-0">
+               <div className="mt-auto pt-2 flex justify-between items-center shrink-0">
                    <div className="relative w-20 h-20 group">
                         {/* Spinny PE Box thing */}
                         <div className="absolute inset-0 border-4 border-yellow-400 rotate-45 bg-black animate-[spin_10s_linear_infinite] group-hover:border-yellow-300 transition-colors" />

@@ -73,10 +73,13 @@ export default function EmployeeCharacter({
         posRef.current.x += dx;
         posRef.current.y += dy;
 
-        // Keep within bounds (optional, but good)
+        // Keep within bounds — account for CSS zoom which makes visible area larger
         if (typeof window !== "undefined") {
-          posRef.current.x = Math.max(0, Math.min(window.innerWidth - 100, posRef.current.x));
-          posRef.current.y = Math.max(0, Math.min(window.innerHeight - 150, posRef.current.y));
+          const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+          const visibleWidth = window.innerWidth / zoom;
+          const visibleHeight = window.innerHeight / zoom;
+          posRef.current.x = Math.max(0, Math.min(visibleWidth - 100, posRef.current.x));
+          posRef.current.y = Math.max(0, Math.min(visibleHeight - 150, posRef.current.y));
         }
 
         // Update direction based on movement
