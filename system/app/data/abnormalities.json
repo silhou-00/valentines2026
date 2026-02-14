@@ -29,13 +29,13 @@
       "When its mood is low, it may attempt to nibble on the employee's ankles, causing minor RED damage."
     ],
     "workResults": {
-        "good": "16-22",
-        "normal": "10-15",
-        "bad": "0-9"
+        "good": "13-15",
+        "normal": "7-12",
+        "bad": "0-6"
     },
     "qliphothCounter": 4,
     "damageType": "RED",
-    "eBoxOutput": 18,
+    "eBoxOutput": 15,
     "ego": {
         "weapon": "Nibble",
         "suit": "Crumb Coat",
@@ -72,13 +72,13 @@
       "If the entity breaches, it will follow the employee with the highest stats, filming them incessantly."
     ],
     "workResults": {
-        "good": "20-28",
-        "normal": "12-19",
-        "bad": "0-11"
+        "good": "17-20",
+        "normal": "9-16",
+        "bad": "0-8"
     },
     "qliphothCounter": 2,
     "damageType": "WHITE",
-    "eBoxOutput": 25,
+    "eBoxOutput": 20,
     "ego": {
         "weapon": "Lightstick",
         "suit": "Hatsune Miku",
@@ -95,8 +95,8 @@
     "stats": {
       "instinct": "High",
       "insight": "High",
-      "attachment": "Max",
-      "repression": "Impossible"
+      "attachment": "Very High",
+      "repression": "Very Low"
     },
     "image": "/abnormality/RedStringOrigin/191c8686-4e47-4cf5-aa9a-af2e0ea75c97.jpg",
     "galleryImages": [
