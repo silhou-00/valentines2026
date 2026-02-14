@@ -87,7 +87,7 @@ export default function ExtractionSelection({
   const dragProgress = Math.min(dragY / DRAG_THRESHOLD, 1);
 
   return (
-    <div className={`relative flex min-h-full w-full items-center justify-center lg:gap-32 py-20 lg:py-0 bg-[url('/background/LobCorp.png')] bg-cover bg-center ${isMobile ? 'flex-col' : 'flex-row'}`}>
+    <div className={`relative flex min-h-full w-full items-center justify-center lg:gap-8 xl:gap-16 2xl:gap-32 py-20 lg:py-0 bg-[url('/background/LobCorp.png')] bg-cover bg-center ${isMobile ? 'flex-col' : 'flex-row'}`}>
       
       {/* Overlay grid/texture */}
       <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-size-[1.25rem_1.25rem]" />
@@ -102,7 +102,7 @@ export default function ExtractionSelection({
         onClick={() => { setShowError(true); setTimeout(() => setShowError(false), 3000); }}
         className="absolute top-10 flex items-center justify-center border-4 border-yellow-100 bg-black px-8 py-2 shadow-lg z-50 cursor-pointer hover:bg-zinc-900 hover:border-yellow-300 transition-all active:scale-95"
       >
-          <span className="font-norwester text-2xl text-yellow-100 tracking-widest">EXTRACT ABNORMALITY</span>
+          <span className="font-norwester text-lg lg:text-2xl text-yellow-100 tracking-widest">EXTRACT ABNORMALITY</span>
           <div className="absolute inset-x-0 -bottom-2 h-2 bg-[repeating-linear-gradient(45deg,black,black_0.625rem,#fbbf24_0.625rem,#fbbf24_1.25rem)] border-t border-black" />
       </button>
 
@@ -199,7 +199,7 @@ export default function ExtractionSelection({
           />
           
           {/* Main Container for the Unit */}
-          <div className="relative w-64 lg:w-80 flex flex-col items-center select-none">
+            <div className="relative w-64 lg:w-56 xl:w-72 2xl:w-80 flex flex-col items-center select-none">
             
              {/* Backing Plate / Outline Material */}
              <div className="absolute -inset-4 bg-[#111] rounded-xl -z-10 border-4 border-black group-hover:bg-[#fbf6d9] transition-colors duration-300" style={{ clipPath: "polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%)" }} />
@@ -223,13 +223,13 @@ export default function ExtractionSelection({
 
 
              {/* --- NAME LABEL --- */}
-             <div className="relative z-20 w-[110%] rotate-[-2deg] border-4 border-black bg-black px-2 py-3 text-center shadow-lg skew-x-[-5deg] group-hover:bg-[#fefce0] transition-colors duration-300">
-                 <span className="font-norwester text-3xl text-zinc-500 block tracking-normal leading-none stroke-black stroke-2 group-hover:text-black transition-colors duration-300">{item.name}</span>
+             <div className="relative z-20 w-[110%] rotate-[-2deg] border-4 border-black bg-black px-2 py-2 lg:py-3 text-center shadow-lg skew-x-[-5deg] group-hover:bg-[#fefce0] transition-colors duration-300">
+                 <span className="font-norwester text-xl lg:text-2xl xl:text-3xl text-zinc-500 block tracking-normal leading-none stroke-black stroke-2 group-hover:text-black transition-colors duration-300">{item.name}</span>
              </div>
 
 
              {/* --- MAIN BLACK BOX --- */}
-             <div className="relative z-10 w-full h-56 lg:h-72 border-[0.375rem] border-black bg-black p-2 -mt-2.5 shadow-xl">
+             <div className="relative z-10 w-full h-56 lg:h-48 xl:h-60 2xl:h-72 border-[0.375rem] border-black bg-black p-2 -mt-2.5 shadow-xl">
                  {/* Inner Frame */}
                  <div className="relative h-full w-full overflow-hidden border-2 border-zinc-600 bg-[#0a0a0a]">
                      

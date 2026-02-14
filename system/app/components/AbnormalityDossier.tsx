@@ -88,7 +88,7 @@ export default function AbnormalityDossier({
                   <span className="font-norwester text-[1.5rem] text-red-500">L</span>
               </div>
               <div className="flex flex-col">
-                  <span className="font-norwester text-[1.5rem] md:text-[2rem] text-red-500 leading-none drop-shadow-md whitespace-nowrap">ABNORMALITY DETAILS</span>
+                  <span className="font-norwester text-[1.25rem] lg:text-[1.5rem] xl:text-[2rem] text-red-500 leading-none drop-shadow-md whitespace-nowrap">ABNORMALITY DETAILS</span>
                   <span className="font-mono text-[0.75rem] text-red-300 tracking-[0.3em]">LOBOTOMY CORPORATION DATABASE</span>
               </div>
           </div>
@@ -128,7 +128,7 @@ export default function AbnormalityDossier({
 
 
           {/* COLUMN 2: BASIC INFO */}
-          <div className="flex flex-col w-full md:w-auto lg:w-[22rem] shrink-0 gap-2 h-auto lg:h-full lg:min-h-0">
+          <div className="flex flex-col w-full md:w-auto lg:w-[16rem] xl:w-[20rem] 2xl:w-[22rem] shrink-0 gap-2 h-auto lg:h-full lg:min-h-0">
               <div className="bg-[#1a1a1a] border-t-4 border-yellow-500 px-2 py-1 text-center font-norwester text-yellow-500 text-[1rem] tracking-widest shadow-lg shrink-0">ABNORMALITY BASIC INFORMATION</div>
               
               <div className="relative border-2 border-zinc-600 bg-black p-4 shadow-2xl flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar">
@@ -169,7 +169,7 @@ export default function AbnormalityDossier({
                       </div>
                       <div className="border-l-4 border-zinc-700 pl-2">
                            <span className="font-norwester text-[1rem] text-zinc-500 block mb-0.5">E-Box Output</span>
-                           <span className="font-norwester text-[2rem] text-white ml-1">{abnormality.eBoxOutput || 20}</span>
+                           <span className="font-norwester text-[1.5rem] xl:text-[2rem] text-white ml-1">{abnormality.eBoxOutput || 20}</span>
                       </div>
                   </div>
 
@@ -258,13 +258,13 @@ export default function AbnormalityDossier({
 
 
           {/* COLUMN 4: RIGHT SIDEBAR */}
-          <div className="flex flex-col w-[18rem] shrink-0 gap-[0.75rem] h-full min-h-0">
+          <div className="flex flex-col w-full lg:w-48 xl:w-[16rem] 2xl:w-[18rem] shrink-0 gap-3 h-auto lg:h-full lg:min-h-0">
                {/* Qliphoth Counter */}
                <div className="border-4 border-[#b08d55] bg-black p-[0.75rem] flex flex-col items-center relative shadow-[0_0_1.25rem_rgba(176,141,85,0.2)] shrink-0">
                    <div className="absolute top-[-0.75rem] bg-black px-[0.5rem] border-x border-[#b08d55]">
                         <span className="text-[#b08d55] font-norwester text-[1rem]">Qliphoth Counter</span>
                    </div>
-                   <span className="font-norwester text-[4rem] text-white mt-[0.5rem] drop-shadow-[0_0_0.625rem_white]">{abnormality.qliphothCounter || 0}</span>
+                   <span className="font-norwester text-[2.5rem] xl:text-[4rem] text-white mt-[0.5rem] drop-shadow-[0_0_0.625rem_white]">{abnormality.qliphothCounter || 0}</span>
                </div>
 
                {/* Defenses */}
@@ -323,7 +323,7 @@ export default function AbnormalityDossier({
 
                    <button 
                     onClick={onBack}
-                    className="bg-red-600 hover:bg-red-500 text-black font-norwester text-[2rem] px-6 py-2 skew-x-[-10deg] shadow-[0_0_1.25rem_red] transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_2.5rem_red] z-50"
+                     className="bg-red-600 hover:bg-red-500 text-black font-norwester text-[1.25rem] xl:text-[2rem] px-4 xl:px-6 py-2 skew-x-[-10deg] shadow-[0_0_1.25rem_red] transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_2.5rem_red] z-50"
                    >
                        LEAVE
                    </button>
@@ -338,7 +338,7 @@ export default function AbnormalityDossier({
           <div className="absolute inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col p-[3rem] animate-fade-in">
               <div className="flex justify-between items-center mb-[2rem] border-b-2 border-zinc-700 pb-[1rem]">
                   <div className="flex flex-col">
-                      <h2 className="font-norwester text-[3rem] text-white tracking-wider">OBSERVATION RECORDS</h2>
+                      <h2 className="font-norwester text-[2rem] xl:text-[3rem] text-white tracking-wider">OBSERVATION RECORDS</h2>
                       <span className="font-mono text-zinc-500 mt-[0.5rem]">SUBJECT: {abnormality.name} // {abnormality.code}</span>
                   </div>
                   <button onClick={() => setShowGallery(false)} className="text-zinc-500 hover:text-red-500 font-norwester text-[2rem] border border-zinc-600 hover:border-red-500 px-[1.5rem] py-[0.5rem] transition-all">CLOSE [X]</button>

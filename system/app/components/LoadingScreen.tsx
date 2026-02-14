@@ -37,7 +37,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      <div className="relative h-100 w-full flex flex-col items-center justify-center">
+      <div className="relative h-60 lg:h-100 w-full flex flex-col items-center justify-center">
         {steps.map((step, index) => {
           // Calculate offset relative to current step
           const offset = index - currentStep;
@@ -57,15 +57,15 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
               <p
                 className={`font-norwester tracking-widest transition-all duration-300 ${
                   index === currentStep
-                    ? "text-4xl text-[#4ffbfb] drop-shadow-[0_0_0.625rem_rgba(79,251,251,0.5)]" 
-                    : "text-2xl text-[#1d5c5c]" 
+                    ? "text-2xl lg:text-4xl text-[#4ffbfb] drop-shadow-[0_0_0.625rem_rgba(79,251,251,0.5)]" 
+                    : "text-lg lg:text-2xl text-[#1d5c5c]" 
                 }`}
               >
                 {step}
               </p>
                {/* Horizontal lines for active step */}
               {index === currentStep && (
-                  <div className="w-125 h-px bg-[#4ffbfb] mt-4 animate-pulse transition-all duration-500 shadow-[0_0_0.625rem_#4ffbfb]" />
+                  <div className="w-48 lg:w-125 h-px bg-[#4ffbfb] mt-4 animate-pulse transition-all duration-500 shadow-[0_0_0.625rem_#4ffbfb]" />
               )}
             </div>
           );
@@ -75,7 +75,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       {/* FINAL DAY 14 OVERLAY */}
       {currentStep === steps.length - 1 && (
          <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-50 animate-flash-bang">
-             <h1 className="font-norwester text-8xl text-[#4ffbfb] animate-pulse drop-shadow-[0_0_1.875rem_#4ffbfb]">DAY 14</h1>
+             <h1 className="font-norwester text-5xl lg:text-8xl text-[#4ffbfb] animate-pulse drop-shadow-[0_0_1.875rem_#4ffbfb]">DAY 14</h1>
          </div>
       )}
 
@@ -83,7 +83,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       {showButton && (
         <button
           onClick={() => { setFadeOut(true); setTimeout(onComplete, 1000); }}
-          className="z-50 mt-8 font-norwester text-2xl text-black bg-[#4ffbfb] px-10 py-3 tracking-widest hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_1.25rem_#4ffbfb] animate-pulse"
+          className="z-50 mt-8 font-norwester text-lg lg:text-2xl text-black bg-[#4ffbfb] px-6 lg:px-10 py-2 lg:py-3 tracking-widest hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_1.25rem_#4ffbfb] animate-pulse"
         >
           START DAY 14
         </button>
@@ -98,8 +98,8 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                 <path d="M50 30 L50 70 M30 50 L70 50" stroke="black" strokeWidth="5" />
              </svg>
              <div className="flex flex-col">
-                 <span className="font-norwester text-3xl text-[#1d5c5c]">LOBOTOMY VALENTINE</span>
-                 <span className="font-mono text-sm text-[#1d5c5c] tracking-widest">FACE THE FEAR, MAKE THE FUTURE</span>
+                 <span className="font-norwester text-xl lg:text-3xl text-[#1d5c5c]">LOBOTOMY VALENTINE</span>
+                 <span className="font-mono text-xs lg:text-sm text-[#1d5c5c] tracking-widest">FACE THE FEAR, MAKE THE FUTURE</span>
              </div>
           </div>
       </div>
