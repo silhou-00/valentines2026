@@ -87,7 +87,7 @@ export default function ExtractionSelection({
   const dragProgress = Math.min(dragY / DRAG_THRESHOLD, 1);
 
   return (
-    <div className={`relative flex min-h-full w-full items-center justify-center md:gap-16 2xl:gap-32 py-20 lg:py-0 bg-[url('/background/LobCorp.png')] bg-cover bg-center ${isMobile ? 'flex-col' : 'flex-row'}`}>
+    <div className={`fixed inset-0 z-40 flex w-full items-center justify-center md:gap-16 2xl:gap-32 py-20 lg:py-0 overflow-hidden bg-[url('/background/LobCorp.png')] bg-cover bg-center ${isMobile ? 'flex-col' : 'flex-row'}`}>
       
       {/* Overlay grid/texture */}
       <div className="pointer-events-none absolute inset-0 bg-black/30 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-size-[1.25rem_1.25rem]" />

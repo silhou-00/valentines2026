@@ -11,7 +11,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-norwester: var(--font-norwester);
-
+  
   --animate-shake-violent: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   --animate-door-slide-left: slideLeft 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
   --animate-door-slide-right: slideRight 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
@@ -20,46 +20,108 @@
   --animate-text-type: typing 3s steps(40, end);
   --animate-scanline: scanline 8s linear infinite;
   --animate-shake-subtle: shakeSubtle 3s ease-in-out infinite;
-
+  
   @keyframes shake {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    10%, 90% { transform: translate(-0.125rem, -0.125rem) rotate(-1deg); }
-    20%, 80% { transform: translate(0.125rem, 0.125rem) rotate(1deg); }
-    30%, 50%, 70% { transform: translate(-0.25rem, 0.125rem) rotate(-2deg); }
-    40%, 60% { transform: translate(0.25rem, -0.125rem) rotate(2deg); }
+    0%, 100% { transform: translate(0, 0) rotate(0deg);
   }
-  @keyframes stamp {
-    0% { opacity: 0; transform: scale(5) rotate(-15deg); }
-    100% { opacity: 1; transform: scale(1) rotate(-5deg); }
+  
+  10%, 90% {
+    transform: translate(-0.125rem, -0.125rem) rotate(-1deg);
   }
-  @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+  
+  20%, 80% {
+    transform: translate(0.125rem, 0.125rem) rotate(1deg);
   }
-  @keyframes slideLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+  
+  30%, 50%, 70% {
+    transform: translate(-0.25rem, 0.125rem) rotate(-2deg);
   }
-  @keyframes slideRight {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(100%); }
-  }
-  @keyframes flashBang {
-    0% { background-color: white; opacity: 1; }
-    100% { background-color: transparent; opacity: 0; }
-  }
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-  @keyframes shakeSubtle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(0.5deg); }
-    75% { transform: rotate(-0.5deg); }
+  
+  40%, 60% {
+    transform: translate(0.25rem, -0.125rem) rotate(2deg);
   }
 }
 
-@media (prefers-color-scheme: dark) {
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(5) rotate(-15deg);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-5deg);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+  }
+  
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes flashBang {
+  0% {
+    background-color: white;
+    opacity: 1;
+  }
+  
+  100% {
+    background-color: transparent;
+    opacity: 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes shakeSubtle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(0.5deg);
+  }
+  
+  75% {
+    transform: rotate(-0.5deg);
+  }
+}
+}
+
+@media (prefers-color-scheme:dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -73,24 +135,24 @@ body {
 }
 
 /* Viewport-adaptive zoom scaling — scales EVERYTHING uniformly.
-   Design target: 1920x1080 (zoom: 1.0) */
-
-/* Low-res laptop (1024x768) */
-@media (max-width: 1024px) {
-  body { zoom: 0.65; }
-}
+Design target: 1920x1080 (zoom: 1.0)
+Mobile/tablet (<1024px): NO zoom — uses component-level Tailwind breakpoints instead */
 
 /* Standard laptop (1025–1366px) */
-@media (min-width: 1025px) and (max-width: 1366px) {
-  body { zoom: 0.75; }
+@media (min-width:1024px) and (max-width:1366px) {
+  body {
+    zoom: 0.75;
+  }
 }
 
 /* Mid-range / high-res laptop (1367–1920px) */
-@media (min-width: 1367px) and (max-width: 1920px) {
-  body { zoom: 0.85; }
+@media (min-width:1367px) and (max-width:1920px) {
+  body {
+    zoom: 0.85;
+  }
 }
 
-/* Full HD+ / Ultra-wide (>1920px) — original design scale */
+/* Full HD + / Ultra-wide ( > 1920px) — original design scale */
 
 /* Custom Scrollbar — Lobotomy Corp Theme */
 * {
